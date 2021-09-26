@@ -36,7 +36,7 @@ Theta = np.zeros((3, 1))
 
 for iterator in np.arange(1, numIteration+1, 1):
     result[0].append(Loss(Theta))
-    Theta += gradient(Theta, 0.0005).reshape(3, 1)
+    Theta += gradient(Theta, 1.5).reshape(3, 1)
 
 Theta = np.zeros((3, 1))
 
@@ -58,6 +58,7 @@ plt.show()
 #########################################################################
 
 R = np.arange(0.1, 1.28, 0.001)
+
 
 def findBestRate():
     minimum = []
@@ -100,6 +101,7 @@ while index < len(nums):
     index += 1
 
 print("Find the rapidest learning rate: ", R[minIterationNumIndex])
+print("The Iterations: ", minIteration)
 
 ##############################################################################
 # Calculate result basic on the calculated learning rate

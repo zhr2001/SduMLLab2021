@@ -33,8 +33,13 @@ def judgeStop(down):
 Zeta = np.array([0, 0])
 Down = getDown(Zeta)
 
+init = True
+
 while judgeStop(Down) != 1:
     Zeta = Zeta + Down
+    if init:
+        print("第一次迭代之后的theta: ", Zeta)
+        init = False
     Down = getDown(Zeta)
 
 result = []
@@ -46,5 +51,6 @@ x = np.array(np.ravel(x[1:, ]))
 plt.plot(x, result, 'r', x, y, 'y')
 plt.show()
 
+print("The Best Theta: ", Zeta)
 print("x = 3.5 prediction: ", HZeta(Zeta, [1, 3.5]))
 print("x = 7   prediction: ", HZeta(Zeta, [1, 7]))
