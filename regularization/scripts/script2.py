@@ -137,15 +137,11 @@ Zeta2 = s2.getResult()
 
 for itemU in U:
     for itemV in V:
-        z[U.index, V.index] = np.dot(productFeatureVector(itemU, itemV), Zeta)
+        s = productFeatureVector(itemU, itemV)
+        z[U.index, V.index] = np.dot(s, Zeta)
+        z1[U.index, V.index] = np.dot(s, Zeta1)
+        z2[U.index, V.index] = np.dot(s, Zeta2)
 
-for itemU in U:
-    for itemV in V:
-        z1[U.index, V.index] = np.dot(productFeatureVector(itemU, itemV), Zeta1)
-
-for itemU in U:
-    for itemV in V:
-        z2[U.index, V.index] = np.dot(productFeatureVector(itemU, itemV), Zeta2)
 
 # plt(u, v, z)
 # plt.show()
