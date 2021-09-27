@@ -2,8 +2,6 @@ import numpy as np
 from matplotlib import pyplot as plt
 import math
 
-MM = 1e8
-
 x = np.loadtxt('../data2/ex2x.dat', dtype=float)
 y = np.loadtxt('../data2/ex2y.dat', dtype=float)
 m = len(y)
@@ -100,7 +98,7 @@ print("Iteration nums: ", num)
 a = Zeta[0] / -Zeta[1]
 b = Zeta[0] / -Zeta[2]
 
-plt.plot([a, 0], [0, b])
+plt.plot([a, 0], [0, b], 'r')
 plt.xlim(10, 70)
 plt.ylim(40, 100)
 plt.xlabel('exam1 scores')
