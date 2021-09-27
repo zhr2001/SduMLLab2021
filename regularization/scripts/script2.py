@@ -92,7 +92,7 @@ class Solve:
         self.__r = learningRate
 
     def getResult(self):
-        print("Learning Rate    : ", self.__r)
+        print("Learning Rate     : ", self.__r)
         zeta = np.zeros((28, 1))
         flag = 1e9
         LL = Loss(zeta, self.__r)
@@ -101,8 +101,8 @@ class Solve:
             zeta -= np.matmul(np.linalg.inv(Newton(zeta, self.__r)), gradient(zeta, self.__r))
             flag = LL - Loss(zeta, self.__r)
             LL -= flag
-        print("Iterations num   : ", self.__num)
-        print("The minimum value: ", LL)
+        print("Iterations num    : ", self.__num)
+        print("The minimum value : ", LL)
         print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
         return zeta
 
@@ -113,11 +113,18 @@ for index in range(m):
 
 x = np.array(transform)
 
+##########################################################
+#   Comparison between the three results
+##########################################################
+
 u = np.arange(-1, 1.5, 0.0125)
 v = np.arange(-1, 1.5, 0.0125)
-z = np.zeros((200, 200))
 U = np.nditer(u, flags=['f_index'])
 V = np.nditer(v, flags=['f_index'])
+
+z = np.zeros((200, 200))
+z1 = np.zeros((200, 200))
+z2 = np.zeros((200, 200))
 
 s0 = Solve(0)
 Zeta = s0.getResult()
@@ -126,11 +133,19 @@ s1 = Solve(1)
 Zeta1 = s1.getResult()
 
 s2 = Solve(10)
-zeta2 = s2.getResult()
+Zeta2 = s2.getResult()
 
 for itemU in U:
     for itemV in V:
         z[U.index, V.index] = np.dot(productFeatureVector(itemU, itemV), Zeta)
+
+for itemU in U:
+    for itemV in V:
+        z1[U.index, V.index] = np.dot(productFeatureVector(itemU, itemV), Zeta1)
+
+for itemU in U:
+    for itemV in V:
+        z2[U.index, V.index] = np.dot(productFeatureVector(itemU, itemV), Zeta2)
 
 # plt(u, v, z)
 # plt.show()
