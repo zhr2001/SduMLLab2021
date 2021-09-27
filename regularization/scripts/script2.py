@@ -116,11 +116,12 @@ x = np.array(transform)
 ##########################################################
 #   Comparison between the three results
 ##########################################################
+ax = plt.subplots()
 
 u = np.arange(-1, 1.5, 0.0125)
 v = np.arange(-1, 1.5, 0.0125)
-U = np.nditer(u, flags=['f_index'])
-V = np.nditer(v, flags=['f_index'])
+
+uv = []
 
 z = np.zeros((200, 200))
 z1 = np.zeros((200, 200))
@@ -135,13 +136,41 @@ Zeta1 = s1.getResult()
 s2 = Solve(10)
 Zeta2 = s2.getResult()
 
-for itemU in U:
-    for itemV in V:
+for index1 in range(200):
+    for index2 in range(200):
+        itemU = u[index1]
+        itemV = v[index2]
+        uv.append([itemU, itemV])
         s = productFeatureVector(itemU, itemV)
-        z[U.index, V.index] = np.dot(s, Zeta)
-        z1[U.index, V.index] = np.dot(s, Zeta1)
-        z2[U.index, V.index] = np.dot(s, Zeta2)
+        z[index1][index2] = np.dot(s, Zeta)
+        z1[index1][index2] = np.dot(s, Zeta1)
+        z2[index1][index2] = np.dot(s, Zeta2)
 
+uv = np.array(uv)
+
+
+def draw(Z):
+    positive = []
+    negative = []
+
+    for indexX in range(200):
+        for indexY in range(200):
+            if Z[indexX, indexY] > 0:
+                positive.append([u[indexX], v[indexY]])
+            else:
+                negative.append([u[indexX], v[indexY]])
+
+    positive = np.array(positive)
+    negative = np.array(negative)
+    plt.scatter(positive[:, 0], positive[:, 1])
+    plt.scatter(negative[:, 0], negative[:, 1])
+
+    plt.show()
+
+
+draw(z)
+draw(z1)
+draw(z2)
 
 # plt(u, v, z)
 # plt.show()
