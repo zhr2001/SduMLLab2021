@@ -1,7 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
-alpha = 0.05
+alpha = 0.007
 x = np.loadtxt('../data1/ex1_1x.dat')
 y = np.loadtxt('../data1/ex1_1y.dat')
 m = len(x)

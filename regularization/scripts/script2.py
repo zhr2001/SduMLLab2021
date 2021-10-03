@@ -100,6 +100,7 @@ class Solve:
             self.__num += 1
             zeta -= np.matmul(np.linalg.inv(Newton(zeta, self.__r)), gradient(zeta, self.__r))
             flag = LL - Loss(zeta, self.__r)
+            print(LL)
             LL -= flag
         print("Iterations num    : ", self.__num)
         print("The minimum value : ", LL)

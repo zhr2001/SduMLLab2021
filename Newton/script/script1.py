@@ -77,9 +77,9 @@ print("000 Loss: ", loss)
 
 num = 0
 
-while abs(flag) > 0.000001:
+while abs(flag) > 0.0000001:
     num += 1
-    # Zeta += np.transpose(gradient(Zeta, 0.001))
+    # Zeta += gradient(Zeta, 0.001).reshape(x.shape[1], 1)
     Zeta -= NewtonGradient(Zeta)
     # print(y - np.dot(x, Zeta))
     # print(Zeta)

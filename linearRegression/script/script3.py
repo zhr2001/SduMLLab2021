@@ -36,7 +36,7 @@ Theta = np.zeros((3, 1))
 
 for iterator in np.arange(1, numIteration+1, 1):
     result[0].append(Loss(Theta))
-    Theta += gradient(Theta, 1.5).reshape(3, 1)
+    Theta += gradient(Theta, 0.9).reshape(3, 1)
 
 Theta = np.zeros((3, 1))
 
